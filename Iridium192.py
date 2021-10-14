@@ -84,7 +84,7 @@ class Ir_192:
   """
   Class of Source Ir-192
   """
-  def __init__(self, CalDate):
+  def __init__(self, CalDate, RAKR):
     # cGy/h/U, cGy cm2/h
     DoseRateConstant = 1.1080 
     #Activity Ci
@@ -93,7 +93,7 @@ class Ir_192:
 
     length=3.6 #mm
 
-    RAKR = 52190 # uGy/h at 1 m
+    # RAKR = 52190 # uGy/h at 1 m
     # CalDate = datetime(2020,11,18,13,9)
     MeanLife=73.83 # dias
 

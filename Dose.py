@@ -4,13 +4,6 @@ from scipy import interpolate
 from datetime import datetime
 from Iridium192 import Ir_192
 
-
-# from Iridium192 import Source
-
-# calc_date = datetime(2020,11,18,13,9)
-# fuente = Ir_192(CalDate=calc_date)
-# # fuente = Source(CalDate=calc_date)
-
 def Dose_Rate(Position,calc_point,fuente,PlanDate):
     deltaPlanCal = (PlanDate-fuente.CalDate).days + (PlanDate-fuente.CalDate).seconds/(24*3600)
 
@@ -50,4 +43,18 @@ def Dose_Rate(Position,calc_point,fuente,PlanDate):
     
     return Sk*fuente.DoseRateConstant*(GL_r_th/GL0)*g_r*F_r_th.T
 
-# DR = Dose_Rate(Position,calc_point,fuente,PlanDate)
+
+def Dose(Catheters, Calc_Matrix, fuente, PlanDate):
+    """
+    This funtion return a matrix of dose in the space
+    """
+    DoseperMatrix=[]
+    for calc_point in Calc_Matrix:
+        DoseperCatheter=[]
+        for Position in Catheters:
+            DoseRate=Dose_Rate(Position[['x','y','z']],calc_point,fuente,PlanDate)
+            DoseperDwell = DoseRate*np.array(Position['time']/3600)
+            DoseperCatheter.append(DoseperDwell.sum())
+        DoseperCatheter = np.array(DoseperCatheter)
+        DoseperMatrix.append(DoseperCatheter.sum())
+    return DoseperMatrix
