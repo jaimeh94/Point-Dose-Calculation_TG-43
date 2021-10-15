@@ -1,3 +1,6 @@
 # Point Dose Calculation with TG 43
 
-In construction
+Script with calculation finished.
+
+
+Graphical interface In construction
