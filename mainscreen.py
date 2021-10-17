@@ -12,6 +12,8 @@ from PyQt5.QtWidgets import (
     QWidget,
     QFileDialog
 )
+
+from PandasModel import PandasModel
 from tg43.Extraction import Extraction
 from tg43.validation import validation
 
@@ -37,10 +39,13 @@ class dcm_input_Screen(QDialog):
     def getValues(self):
         RAKR = int(self.lineRAKR.text())
         CalDate = self.dateTimeEdit.dateTime().toPyDateTime()
-        RT_Plan = pydicom.dcmread(self.file_name.text())
+        fname = self.file_name.text()
+        RT_Plan = pydicom.dcmread(fname)
 
-        print(validation(RAKR,CalDate,RT_Plan))
+        result = validation(RAKR,CalDate,RT_Plan)
 
+        self.results_screen = results_Screen(result,fname)
+        self.results_screen.show()
 
     def browsefiles(self):
         fname=QFileDialog.getOpenFileName(self, 'Open file')
@@ -51,6 +56,19 @@ class dcm_input_Screen(QDialog):
         print(Extraction(pydicom.dcmread(fname[0])))
 
         return RT_Plan
+
+class results_Screen(QDialog):
+    def __init__(self,result,fname):
+        super(results_Screen,self).__init__()
+        self.result = result
+        self.fname = fname
+        patient = pydicom.dcmread(fname)
+        
+        model = PandasModel(result)
+        loadUi('results.ui',self)
+
+        self.tableView.setModel(model)
+        self.label_4.setText(str(patient.PatientName))
 
 app = QApplication(sys.argv)
 mainscreen = MainScreen()

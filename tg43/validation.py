@@ -14,7 +14,7 @@ def validation(RAKR,CalDate,RT_Plan):
   Dosis = Dose(Catheters,Calc_Matrix,fuente,PlanDate)
 
   Puntos = IcruDosePoints
-  Puntos['Manual'] = Dosis
+  Puntos['Manual (cGy)'] = Dosis
 
   Puntos['Error(%)'] = round(100*(Puntos.Plan - Puntos.Manual)/Puntos.Manual,2)
 

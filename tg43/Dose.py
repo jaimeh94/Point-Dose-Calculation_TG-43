@@ -54,7 +54,7 @@ def Dose(Catheters, Calc_Matrix, fuente, PlanDate):
         for Position in Catheters:
             DoseRate=Dose_Rate(Position[['x','y','z']],calc_point,fuente,PlanDate)
             DoseperDwell = DoseRate*np.array(Position['time']/3600)
-            DoseperCatheter.append(DoseperDwell.sum())
+            DoseperCatheter.append(round(DoseperDwell.sum(),2))
         DoseperCatheter = np.array(DoseperCatheter)
         DoseperMatrix.append(DoseperCatheter.sum())
     return DoseperMatrix

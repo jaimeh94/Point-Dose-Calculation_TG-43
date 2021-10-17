@@ -40,7 +40,7 @@ def Extraction(RT_Plan):
     calc_point = np.array(points[k].DoseReferencePointCoordinates)/10
     Calc_Matrix.append(calc_point)
 
-  IcruDosePoints = pd.DataFrame([(x.DoseReferenceDescription,round(100*float(x.TargetPrescriptionDose),2)) for x in points], columns=['indice','Plan'])
+  IcruDosePoints = pd.DataFrame([(x.DoseReferenceDescription,round(100*float(x.TargetPrescriptionDose),2)) for x in points], columns=['Points','Plan (cGy)'])
 
   rawPlanDate = RT_Plan.SourceSequence[0].SourceStrengthReferenceDate
   rawPlanTime = RT_Plan.SourceSequence[0].SourceStrengthReferenceTime
