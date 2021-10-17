@@ -2,5 +2,8 @@
 
 Script with calculation finished.
 
+Module tg43 created
 
-Graphical interface In construction
+## Graphical interface In construction
+
+Main window and dicom file input created
