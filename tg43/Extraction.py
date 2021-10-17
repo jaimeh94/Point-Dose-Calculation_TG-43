@@ -1,8 +1,8 @@
 import pydicom
 import numpy as np
 import pandas as pd
-from Iridium192 import Ir_192
-from Dose import Dose
+from tg43.Iridium192 import Ir_192
+from tg43.Dose import Dose
 from datetime import datetime
 
 def Extraction(RT_Plan):

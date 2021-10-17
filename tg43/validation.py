@@ -1,10 +1,10 @@
 import pydicom
 import numpy as np
 import pandas as pd
-from Iridium192 import Ir_192
-from Dose import Dose
+from tg43.Iridium192 import Ir_192
+from tg43.Dose import Dose
 from datetime import datetime
-from Extraction import Extraction
+from tg43.Extraction import Extraction
 
 def validation(RAKR,CalDate,RT_Plan):
   fuente = Ir_192(CalDate=CalDate, RAKR=RAKR)

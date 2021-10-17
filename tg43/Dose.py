@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from scipy import interpolate
 from datetime import datetime
-from Iridium192 import Ir_192
+from tg43.Iridium192 import Ir_192
 
 def Dose_Rate(Position,calc_point,fuente,PlanDate):
     deltaPlanCal = (PlanDate-fuente.CalDate).days + (PlanDate-fuente.CalDate).seconds/(24*3600)
